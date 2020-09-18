@@ -27,7 +27,7 @@ public class Main {
         printDeadlinesUsingStreams(tasksData);
 
         System.out.println("Total number of deadlines using streams:" + countDeadlinesUsingStreams(tasksData));
-        
+
     }
 
     private static int countDeadlines(ArrayList<Task> tasksData) {
@@ -39,12 +39,26 @@ public class Main {
         }
         return count;
     }
+    public static int countDeadlinesUsingStreams(ArrayList<Task> tasksData){
+        System.out.println("Calculate count using streams");
+        int count;
+        count = (int) tasksData.stream()
+                .filter((t) -> t instanceof Deadline)
+                .count();
 
+        return count;
+    }
     public static void printData(ArrayList<Task> tasksData) {
         for (Task t : tasksData) {
             System.out.println(t);
         }
     }
+
+     public static void printDataUsingStreams(ArrayList<Task> tasksData){
+        System.out.println("Printing data using streams");
+        tasksData.stream()
+                .forEach(System.out::println);
+     }
 
     public static void printDeadlines(ArrayList<Task> tasksData) {
         for (Task t : tasksData) {
